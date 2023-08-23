@@ -8,7 +8,7 @@ type Post = {
   frontmatter: any
 }
 
-export async function getProps() {
+async function getProps() {
   try {
     const files = fs.readdirSync('public/posts')
 

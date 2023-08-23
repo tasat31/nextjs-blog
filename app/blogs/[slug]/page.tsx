@@ -7,7 +7,7 @@ type Post = {
   frontmatter: any
 }
 
-export async function getPost(slug: string) {
+async function getPost(slug: string) {
   try {
     const fileName = fs.readFileSync(`public/posts/${slug}.md`, 'utf-8')
     const { data: frontmatter, content } = matter(fileName);
