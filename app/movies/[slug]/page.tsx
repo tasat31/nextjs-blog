@@ -11,7 +11,7 @@ type Post = {
 
 async function getPost(slug: string) {
   try {
-    const fileName = fs.readFileSync(`public/posts/${slug}.md`, 'utf-8')
+    const fileName = fs.readFileSync(`public/movies/${slug}.md`, 'utf-8')
     const { data: frontmatter, content } = matter(fileName);
 
     return {
@@ -61,7 +61,7 @@ export default async function Page({ params: { slug } }: { params: { slug: strin
         </div>
       </div>
       <div className='text-center'>
-        <Link href='/blogs' className='dark:invert'>一覧に戻る</Link>
+        <Link href='/movies' className='dark:invert'>一覧に戻る</Link>
       </div>
     </div>
   )

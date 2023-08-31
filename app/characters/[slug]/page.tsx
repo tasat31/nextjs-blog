@@ -11,7 +11,7 @@ type Post = {
 
 async function getPost(slug: string) {
   try {
-    const fileName = fs.readFileSync(`public/posts/${slug}.md`, 'utf-8')
+    const fileName = fs.readFileSync(`public/characters/${slug}.md`, 'utf-8')
     const { data: frontmatter, content } = matter(fileName);
 
     return {
@@ -40,8 +40,22 @@ export default async function Page({ params: { slug } }: { params: { slug: strin
           width={ 650 }
           height={ 340 }
           alt={ post.frontmatter?.title }
-          src={ `/${post.frontmatter?.socialImage}`}
+          src={ `/${post.frontmatter?.mainImage}`}
         />
+        <div className="flex flex-row">
+          <Image
+            width={ 320 }
+            height={ 170 }
+            alt={ post.frontmatter?.title }
+            src={ `/${post.frontmatter?.thumbnailOne}`}
+          />
+          <Image
+            width={ 320 }
+            height={ 170 }
+            alt={ post.frontmatter?.title }
+            src={ `/${post.frontmatter?.thumbnailTwo}`}
+          />
+        </div>
         <h3 className='italic pl-6'>--- {post.frontmatter?.preamble}</h3>
         <div className='flex justify-end p-2'>
           <Tags tags={post.frontmatter?.tags} />
@@ -61,7 +75,7 @@ export default async function Page({ params: { slug } }: { params: { slug: strin
         </div>
       </div>
       <div className='text-center'>
-        <Link href='/blogs' className='dark:invert'>一覧に戻る</Link>
+        <Link href='/characters' className='dark:invert'>一覧に戻る</Link>
       </div>
     </div>
   )

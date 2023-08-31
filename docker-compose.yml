@@ -10,5 +10,7 @@ services:
     ports:
       - "3001:3000"
     working_dir: /home/project
+    tty: true
+    stdin_open: true
     volumes:
       - ./:/home/project

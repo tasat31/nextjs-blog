@@ -11,11 +11,11 @@ type Post = {
 
 async function getProps() {
   try {
-    const files = fs.readdirSync('public/posts')
+    const files = fs.readdirSync('public/characters')
 
     const posts: Post[] = files.map((fileName) => {
       const slug = fileName.replace('.md', '')
-      const readFile = fs.readFileSync(`public/posts/${fileName}`, 'utf-8')
+      const readFile = fs.readFileSync(`public/characters/${fileName}`, 'utf-8')
       const { data: frontmatter } = matter(readFile)
 
       return {
@@ -41,12 +41,12 @@ export default async function Page(){
       {
         posts.map(({ slug, frontmatter }) => (
           <div key={ slug } className="border border-gray-200 m-2 rounded-xl shadow-lg overflow-hidden flex flex-col">
-            <Link href={ `/blogs/${slug}` }>
+            <Link href={ `/characters/${slug}` }>
                 <Image
                   width={ 650 }
                   height={ 340 }
                   alt={ frontmatter.title }
-                  src={ `/${frontmatter.socialImage}`}
+                  src={ `/${frontmatter.mainImage}`}
                 />
 
               <h1 className="text-xl pl-4 py-2">{ frontmatter.title }</h1>
