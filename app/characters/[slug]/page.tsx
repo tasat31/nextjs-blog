@@ -1,3 +1,4 @@
+import path from 'path'
 import fs from 'fs'
 import matter from 'gray-matter'
 import Image from 'next/image'
@@ -9,9 +10,11 @@ type Post = {
   frontmatter: any
 }
 
-async function getPost(slug: string) {
+async function getProps(slug: string) {
   try {
-    const fileName = fs.readFileSync(`public/characters/${slug}.md`, 'utf-8')
+    const file = path.join(process.cwd(), 'public/characters/', `${slug}.md`)
+
+    const fileName = fs.readFileSync(file, 'utf-8')
     const { data: frontmatter, content } = matter(fileName);
 
     return {
@@ -27,7 +30,7 @@ async function getPost(slug: string) {
 }
 
 export default async function Page({ params: { slug } }: { params: { slug: string } }) {
-  const post = await getPost(slug)
+  const post = await getProps(slug)
 
   const markdownIt = require('markdown-it')
   const md = new markdownIt()

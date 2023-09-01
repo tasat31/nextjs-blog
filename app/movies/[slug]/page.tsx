@@ -1,3 +1,4 @@
+import path from 'path'
 import fs from 'fs'
 import matter from 'gray-matter'
 import Image from 'next/image'
@@ -11,7 +12,9 @@ type Post = {
 
 async function getPost(slug: string) {
   try {
-    const fileName = fs.readFileSync(`public/movies/${slug}.md`, 'utf-8')
+    const file = path.join(process.cwd(), 'public/movies/', `${slug}.md`)
+
+    const fileName = fs.readFileSync(file, 'utf-8')
     const { data: frontmatter, content } = matter(fileName);
 
     return {
