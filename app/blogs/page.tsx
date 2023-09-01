@@ -9,14 +9,13 @@ type Post = {
   frontmatter: any
 }
 
-async function getServerSideProps() {
+async function getProps() {
   try {
     const files = fs.readdirSync('public/posts')
 
     const posts: Post[] = files.map((fileName) => {
       const slug = fileName.replace('.md', '')
       const readFile = fs.readFileSync(`public/posts/${fileName}`, 'utf-8')
-      console.log('read file')
       const { data: frontmatter } = matter(readFile)
 
       return {
@@ -27,14 +26,15 @@ async function getServerSideProps() {
 
     return posts
   } catch (error) {
-    console.log(error)
+    console.error(error)
 
     return []
   }
 }
 
 export default async function Page(){
-  const posts = await getServerSideProps()
+  const posts = await getProps()
+
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 lg-grid-cols-4 md:p-0 mt-8">
@@ -45,16 +45,16 @@ export default async function Page(){
                 <Image
                   width={ 650 }
                   height={ 340 }
-                  alt={ frontmatter?.title }
-                  src={ `/${frontmatter?.socialImage}`}
+                  alt={ frontmatter.title }
+                  src={ `/${frontmatter.socialImage}`}
                 />
 
-              <h1 className="text-xl pl-4 py-2">{ frontmatter?.title }</h1>
+              <h1 className="text-xl pl-4 py-2">{ frontmatter.title }</h1>
               <h3 className='italic pl-6'>{frontmatter?.preamble}</h3>
               <div className='flex justify-end p-2'>
                 <Tags tags={frontmatter?.tags} />
               </div>
-              <h3 className='text-right p-1'>Created at {frontmatter?.createdAt?.toDateString()}</h3>
+              <h3 className='text-right p-1'>Created at {frontmatter.createdAt?.toDateString()}</h3>
             </Link>
           </div>
         ))
