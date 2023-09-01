@@ -26,8 +26,8 @@ async function getPost(slug: string) {
   }
 }
 
-export default async function Page({ params: { slug } }: { params: { slug: string } }) {
-  const post = await getPost(slug)
+export default async function Page({ params }: { params: { slug: string } }) {
+  const post = await getPost(params.slug)
 
   const markdownIt = require('markdown-it')
   const md = new markdownIt()
