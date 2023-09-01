@@ -5,55 +5,29 @@ import Link from 'next/link'
 import Tags from '@/components/atoms/tags'
 
 type Post = {
-  frontmatter: {
-    title: string
-    socialImage: string
-    preamble: string
-    tags: string[]
-    createdAt: Date
-    conclusion: string
-    stampImage: string
-  }
-  content: string
+  slug: string
+  frontmatter: any
 }
 
-async function getPost(slug: string): Promise<Post> {
+async function getPost(slug: string) {
   try {
     const fileName = fs.readFileSync(`public/posts/${slug}.md`, 'utf-8')
     const { data: frontmatter, content } = matter(fileName);
 
     return {
-      frontmatter: {
-        title: frontmatter.title,
-        socialImage: frontmatter.socialImage,
-        preamble: frontmatter.preamble,
-        tags: frontmatter.tags,
-        createdAt: frontmatter.createdAt,
-        conclusion: frontmatter.conclusion,
-        stampImage: frontmatter.stampImage
-      },
+      frontmatter,
       content
     }
 
   } catch (error) {
     console.error(error)
-    return {
-      frontmatter: {
-        title: '',
-        socialImage: '',
-        preamble: '',
-        tags: [],
-        createdAt: new Date(),
-        conclusion: '',
-        stampImage: ''
-      },
-      content: ''
-    }
+
+    return {}
   }
 }
 
 export default async function Page({ params: { slug } }: { params: { slug: string } }) {
-  const post: Post = await getPost(slug)
+  const post = await getPost(slug)
 
   const markdownIt = require('markdown-it')
   const md = new markdownIt()
