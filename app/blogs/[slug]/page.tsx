@@ -9,7 +9,7 @@ type Post = {
   frontmatter: any
 }
 
-export async function getServerSideProps(slug: string) {
+async function getProps(slug: string) {
   try {
     const fileName = fs.readFileSync(`public/posts/${slug}.md`, 'utf-8')
     const { data: frontmatter, content } = matter(fileName)
@@ -27,7 +27,7 @@ export async function getServerSideProps(slug: string) {
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const post = await getServerSideProps(String(params.slug))
+  const post = await getProps(params.slug)
 
   const markdownIt = require('markdown-it')
   const md = new markdownIt()
