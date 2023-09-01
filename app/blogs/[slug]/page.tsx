@@ -1,3 +1,4 @@
+import path from 'path'
 import fs from 'fs'
 import matter from 'gray-matter'
 import Image from 'next/image'
@@ -6,7 +7,9 @@ import Tags from '@/components/atoms/tags'
 
 export default async function Page({ params: { slug } }: { params: { slug: string } }) {
 
-  const fileName = fs.readFileSync(`public/posts/${slug}.md`, 'utf-8')
+  const file = path.join(process.cwd(), 'public/posts/', `${slug}.md`)
+
+  const fileName = fs.readFileSync(file, 'utf-8')
   const { data: frontmatter, content } = matter(fileName)
 
   const markdownIt = require('markdown-it')
