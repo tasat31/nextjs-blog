@@ -45,7 +45,7 @@ export default async function Page(){
                   width={ 650 }
                   height={ 340 }
                   alt={ frontmatter.title }
-                  src={ `/${frontmatter.socialImage}`}
+                  src={ `/${frontmatter.mainImage}`}
                 />
 
               <h1 className="text-xl pl-4 py-2">{ frontmatter.title }</h1>

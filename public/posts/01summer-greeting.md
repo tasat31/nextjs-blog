@@ -1,6 +1,6 @@
 ---
 title: 暑中お見舞い申し上げます。
-socialImage: summer-greeting.jpg
+mainImage: summer-greeting.jpg
 preamble: 何のいたずらですか、これは？ 不幸の手紙...!?
 conclusion: 名刺にも印刷できますね!
 stampImage: icon03.png

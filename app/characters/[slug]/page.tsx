@@ -33,7 +33,9 @@ export default async function Page({ params: { slug } }: { params: { slug: strin
   const post = await getProps(slug)
 
   const markdownIt = require('markdown-it')
+  const emoji = require('markdown-it-emoji')
   const md = new markdownIt()
+  md.use(emoji)
 
   return (
     <div className='prose'>

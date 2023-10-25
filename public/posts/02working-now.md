@@ -1,6 +1,6 @@
 ---
 title: 制作中です!!
-socialImage: working.png
+mainImage: working.png
 preamble: このさかな、ほんとにお父さんが描いたの？
 conclusion: お店の広告やパンフレットに検討下さい
 stampImage: icon05.png
