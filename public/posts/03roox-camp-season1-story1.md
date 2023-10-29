@@ -4,7 +4,7 @@ mainImage: curtain-roox.jpg
 thumbnailOne: curtain-front.jpg
 thumbnailTwo: curtain-rear.jpg
 preamble: マナーその１：光を外に漏らさない
-conclusion: 経キャン=かるキャンって読むらしいです。
+conclusion: 軽キャン=かるキャンって読むらしいです。
 stampImage: icon03.png
 createdAt: 2023-10-21
 revisedAt: 
